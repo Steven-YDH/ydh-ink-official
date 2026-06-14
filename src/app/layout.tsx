@@ -23,8 +23,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "廣東易鼎鴻國際供應鏈管理有限公司（富日集團） | 極簡奢華品牌官網",
-    template: "%s | 廣東易鼎鴻國際供應鏈管理有限公司（富日集團）",
+    default: "YDH | 廣東易鼎鴻國際供應鏈管理有限公司（富日集團）",
+    template: "%s | YDH | 廣東易鼎鴻國際供應鏈管理有限公司（富日集團）",
   },
   description: "廣東易鼎鴻國際供應鏈管理有限公司（富日集團）官方網站 - 展現極簡奢華感 (Minimalist Premium) 的職人精神與生活美學。從油墨精準到健身美學，以極致純粹定義奢華。",
   keywords: ["廣東易鼎鴻國際供應鏈管理有限公司（富日集團）", "富日集團", "極簡奢華", "Minimalist Premium", "職人精神", "油墨專家", "生活美學", "品牌官網"],
