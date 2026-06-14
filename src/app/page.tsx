@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <div className="bg-brand-black text-white">
       {/* Hero Section */}
-      <section className="relative h-[calc(100vh-80px)] md:h-[calc(100vh-128px)] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image - Luxury Ink Fluid Visual */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105"
@@ -207,22 +207,28 @@ export default function Home() {
             <div className="w-12 h-px bg-brand-gold mx-auto" />
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-12">
             {[
               { 
                 url: "/images/products/uv-r/4b7f65c9a6e5461bd9e1710951aba06.jpg",
                 title: "UV-R 系列",
-                category: "智慧高效 UV 油墨"
+                category: "智慧高效 UV 油墨",
+                rotate: "md:-rotate-1",
+                y: "md:translate-y-4"
               },
               { 
                 url: "/images/products/soy-oil/BC四色墨（2.5kg）/d465d284e09829ab2fa2870f93db251.jpg",
                 title: "BC 大豆系列",
-                category: "環保大豆油墨"
+                category: "環保大豆油墨",
+                rotate: "md:rotate-0",
+                y: "md:-translate-y-4"
               },
               { 
                 url: "/images/products/0-mineral-oil-offset-ink/FSC 0矿物油四色墨（1kg）/7025f706e3ed025a4ed8f3de99160c1.jpg",
                 title: "0 礦物油油墨系列",
-                category: "環保無烴油墨"
+                category: "環保無烴油墨",
+                rotate: "md:rotate-1",
+                y: "md:translate-y-8"
               }
             ].map((item, index) => (
               <motion.div 
@@ -231,18 +237,18 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="group cursor-pointer"
+                className={`group cursor-pointer ${item.rotate} ${item.y}`}
               >
-                <div className="relative aspect-[3/4] overflow-hidden mb-6 bg-zinc-950 rounded-sm flex items-center justify-center p-8 border border-zinc-900 group-hover:border-brand-gold/20 transition-colors duration-500">
-                  <div className="absolute inset-0 bg-zinc-950/80 group-hover:bg-zinc-900/60 transition-colors duration-500" />
+                <div className="relative aspect-[3/4] overflow-hidden mb-6 bg-zinc-950 rounded-sm flex items-center justify-center p-8 border border-zinc-900 group-hover:border-brand-gold/30 transition-all duration-500">
+                  <div className="absolute inset-0 bg-zinc-950/20 group-hover:bg-transparent transition-colors duration-500" />
                   <img 
                     src={item.url} 
                     alt={item.title}
-                    className="relative z-10 w-full h-full object-contain grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                    className="relative z-10 w-full h-full object-contain group-hover:scale-110 transition-all duration-700"
                   />
                 </div>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gold mb-2">{item.category}</p>
-                <h3 className="font-serif text-xl tracking-wide">{item.title}</h3>
+                <h3 className="font-serif text-xl tracking-wide group-hover:text-brand-gold transition-colors duration-300">{item.title}</h3>
               </motion.div>
             ))}
           </div>
