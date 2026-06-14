@@ -155,7 +155,7 @@ export default function Home() {
           您的瀏覽器不支援影片播放。
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-brand-black/40" />
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+        <div className="relative z-10 h-full flex flex-col items-center justify-start pt-32 md:pt-48 text-center px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
