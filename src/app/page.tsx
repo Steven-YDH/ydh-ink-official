@@ -4,6 +4,8 @@ import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import { Globe, Users, Settings, Palette, ShieldCheck, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
+import featuredNames from "@/data/featured.json";
+import galleryData from "@/data/gallery-data.json";
 
 const capabilities = [
   {
@@ -35,6 +37,14 @@ const capabilities = [
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // Dynamic Featured Products Logic
+  const featuredProducts = (featuredNames as string[]).map(name => {
+    // Exact match first, then partial
+    return galleryData.find(p => p.groupName === name) || 
+           galleryData.find(p => p.groupName.includes(name));
+  }).filter((p): p is NonNullable<typeof p> => !!p);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -145,7 +155,7 @@ export default function Home() {
           您的瀏覽器不支援影片播放。
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-brand-black/40" />
-        <div className="relative z-10 h-full flex flex-col items-center justify-end pb-24 text-center px-6">
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -258,33 +268,7 @@ export default function Home() {
             className="flex gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {[
-              { 
-                url: "/images/products/uv-r/4b7f65c9a6e5461bd9e1710951aba06.jpg",
-                title: "UV-R 系列",
-                category: "智慧高效 UV 油墨"
-              },
-              { 
-                url: "/images/products/soy-oil/BC四色墨（2.5kg）/d465d284e09829ab2fa2870f93db251.jpg",
-                title: "BC 大豆系列",
-                category: "環保大豆油墨"
-              },
-              { 
-                url: "/images/products/0-mineral-oil-offset-ink/FSC 0矿物油四色墨（1kg）/7025f706e3ed025a4ed8f3de99160c1.jpg",
-                title: "0 礦物油油墨系列",
-                category: "環保無烴油墨"
-              },
-              { 
-                url: "/images/products/uv-r/4b7f65c9a6e5461bd9e1710951aba06.jpg",
-                title: "LED-UV 系列",
-                category: "節能低溫固化油墨"
-              },
-              { 
-                url: "/images/products/soy-oil/BC四色墨（2.5kg）/d465d284e09829ab2fa2870f93db251.jpg",
-                title: "高感度大豆油墨",
-                category: "快速乾燥環保系列"
-              }
-            ].map((item, index) => (
+            {featuredProducts.map((item, index) => (
               <motion.div 
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -295,14 +279,14 @@ export default function Home() {
               >
                 <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-white rounded-sm flex items-center justify-center p-12 border border-transparent group-hover:border-brand-gold transition-all duration-500 shadow-xl">
                   <img 
-                    src={item.url} 
-                    alt={item.title}
+                    src={item.coverSrc} 
+                    alt={item.groupName}
                     className="w-full h-full object-contain group-hover:scale-105 transition-all duration-700"
                   />
                 </div>
                 <div className="text-center px-4">
                   <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gold/60 mb-2">{item.category}</p>
-                  <h3 className="font-serif text-xl tracking-wide group-hover:text-brand-gold transition-colors duration-300">{item.title}</h3>
+                  <h3 className="font-serif text-xl tracking-wide group-hover:text-brand-gold transition-colors duration-300">{item.groupName}</h3>
                 </div>
               </motion.div>
             ))}
