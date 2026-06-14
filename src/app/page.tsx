@@ -2,7 +2,8 @@
 
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
-import { Globe, Users, Settings, Palette, ShieldCheck } from "lucide-react";
+import { Globe, Users, Settings, Palette, ShieldCheck, ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef } from "react";
 
 const capabilities = [
   {
@@ -33,6 +34,7 @@ const capabilities = [
 ];
 
 export default function Home() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -130,6 +132,33 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Factory Promo Video Section */}
+      <section className="relative h-screen bg-black overflow-hidden">
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-80"
+        >
+          <source src="/videos/factory-promo.mp4" type="video/mp4" />
+          您的瀏覽器不支援影片播放。
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-brand-black/40" />
+        <div className="relative z-10 h-full flex flex-col items-center justify-end pb-24 text-center px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="text-brand-gold tracking-[0.4em] text-xs uppercase mb-4 block">Factory Production</span>
+            <h2 className="font-serif text-3xl md:text-5xl text-white mb-6">現代化智慧製造車間</h2>
+            <div className="w-16 h-px bg-brand-gold mx-auto" />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Core Capabilities Section */}
       <section className="py-32 md:py-48 bg-brand-black border-t border-brand-gold/10 relative overflow-hidden">
         {/* Industrial Blueprint Background - Micrometer-scale Fine Grid */}
@@ -194,41 +223,66 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Gallery Section */}
-      <section className="py-40 bg-zinc-950/50">
+      {/* Featured Gallery Section - Carousel Style */}
+      <section className="py-40 bg-zinc-950/50 relative overflow-hidden">
         <div className="container mx-auto px-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-24"
-          >
-            <h2 className="font-serif text-4xl md:text-5xl mb-6">精選展示</h2>
-            <div className="w-12 h-px bg-brand-gold mx-auto" />
-          </motion.div>
+          <div className="flex justify-between items-end mb-24">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="text-brand-gold tracking-[0.3em] text-[10px] md:text-xs uppercase font-medium">Featured Products</span>
+              <h2 className="font-serif text-4xl md:text-5xl mt-3">精選展示</h2>
+              <div className="w-12 h-px bg-brand-gold mt-6" />
+            </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+            <div className="flex gap-4">
+              <button 
+                onClick={() => scrollContainerRef.current?.scrollBy({ left: -400, behavior: 'smooth' })}
+                className="w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all duration-300"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button 
+                onClick={() => scrollContainerRef.current?.scrollBy({ left: 400, behavior: 'smooth' })}
+                className="w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all duration-300"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+          </div>
+
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {[
               { 
                 url: "/images/products/uv-r/4b7f65c9a6e5461bd9e1710951aba06.jpg",
                 title: "UV-R 系列",
-                category: "智慧高效 UV 油墨",
-                rotate: "md:-rotate-1",
-                y: "md:translate-y-4"
+                category: "智慧高效 UV 油墨"
               },
               { 
                 url: "/images/products/soy-oil/BC四色墨（2.5kg）/d465d284e09829ab2fa2870f93db251.jpg",
                 title: "BC 大豆系列",
-                category: "環保大豆油墨",
-                rotate: "md:rotate-0",
-                y: "md:-translate-y-4"
+                category: "環保大豆油墨"
               },
               { 
                 url: "/images/products/0-mineral-oil-offset-ink/FSC 0矿物油四色墨（1kg）/7025f706e3ed025a4ed8f3de99160c1.jpg",
                 title: "0 礦物油油墨系列",
-                category: "環保無烴油墨",
-                rotate: "md:rotate-1",
-                y: "md:translate-y-8"
+                category: "環保無烴油墨"
+              },
+              { 
+                url: "/images/products/uv-r/4b7f65c9a6e5461bd9e1710951aba06.jpg",
+                title: "LED-UV 系列",
+                category: "節能低溫固化油墨"
+              },
+              { 
+                url: "/images/products/soy-oil/BC四色墨（2.5kg）/d465d284e09829ab2fa2870f93db251.jpg",
+                title: "高感度大豆油墨",
+                category: "快速乾燥環保系列"
               }
             ].map((item, index) => (
               <motion.div 
@@ -236,19 +290,20 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className={`group cursor-pointer ${item.rotate} ${item.y}`}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="min-w-[300px] md:min-w-[350px] lg:min-w-[400px] snap-start group"
               >
-                <div className="relative aspect-[3/4] overflow-hidden mb-6 bg-zinc-950 rounded-sm flex items-center justify-center p-8 border border-zinc-900 group-hover:border-brand-gold/30 transition-all duration-500">
-                  <div className="absolute inset-0 bg-zinc-950/20 group-hover:bg-transparent transition-colors duration-500" />
+                <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-white rounded-sm flex items-center justify-center p-12 border border-transparent group-hover:border-brand-gold transition-all duration-500 shadow-xl">
                   <img 
                     src={item.url} 
                     alt={item.title}
-                    className="relative z-10 w-full h-full object-contain group-hover:scale-110 transition-all duration-700"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-all duration-700"
                   />
                 </div>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gold mb-2">{item.category}</p>
-                <h3 className="font-serif text-xl tracking-wide group-hover:text-brand-gold transition-colors duration-300">{item.title}</h3>
+                <div className="text-center px-4">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-brand-gold/60 mb-2">{item.category}</p>
+                  <h3 className="font-serif text-xl tracking-wide group-hover:text-brand-gold transition-colors duration-300">{item.title}</h3>
+                </div>
               </motion.div>
             ))}
           </div>
