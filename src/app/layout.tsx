@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   description: "廣東易鼎鴻國際供應鏈管理有限公司（富日集團）官方網站 - 展現極簡奢華感 (Minimalist Premium) 的職人精神與生活美學。從油墨精準到健身美學，以極致純粹定義奢華。",
   keywords: ["廣東易鼎鴻國際供應鏈管理有限公司（富日集團）", "富日集團", "極簡奢華", "Minimalist Premium", "職人精神", "油墨專家", "生活美學", "品牌官網"],
   authors: [{ name: "廣東易鼎鴻國際供應鏈管理有限公司（富日集團）" }],
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
