@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import GALLERY_ITEMS from "@/data/gallery-data.json";
 
 interface GalleryItem {
@@ -112,13 +113,15 @@ export default function GalleryPage() {
                 >
                   {/* Image wrapper */}
                   <div className="aspect-square flex items-center justify-center p-6 md:p-8 bg-zinc-950/60 relative">
-                    <img
+                    <Image
                       src={item.coverSrc}
                       alt={item.groupName}
-                      className="w-full h-full object-contain transition-all duration-1000 group-hover:scale-105"
+                      fill
+                      className="object-contain transition-all duration-1000 group-hover:scale-105 p-6"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center z-10">
                       <span className="border border-brand-gold/60 text-brand-gold text-xs px-5 py-2.5 tracking-widest uppercase hover:bg-brand-gold hover:text-black transition-colors duration-300">
                         查看商品組 ({item.images.length} 張照片)
                       </span>
@@ -183,20 +186,26 @@ export default function GalleryPage() {
 
               {/* Main Image Container */}
               <div
-                className="w-full max-h-[80vh] flex items-center justify-center p-4 md:p-8 bg-zinc-900/20 rounded-md border border-zinc-900/60"
+                className="w-full h-[60vh] md:h-[80vh] flex items-center justify-center p-4 md:p-8 bg-zinc-900/20 rounded-md border border-zinc-900/60 relative"
                 onClick={(e) => e.stopPropagation()}
               >
                 <AnimatePresence mode="wait">
-                  <motion.img
+                  <motion.div
                     key={currentImageIndex}
-                    src={activeGroup.images[currentImageIndex]}
-                    alt={`${activeGroup.groupName} - ${currentImageIndex + 1}`}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="max-w-full max-h-[75vh] object-contain select-none"
-                  />
+                    className="relative w-full h-full"
+                  >
+                    <Image
+                      src={activeGroup.images[currentImageIndex]}
+                      alt={`${activeGroup.groupName} - ${currentImageIndex + 1}`}
+                      fill
+                      className="object-contain select-none p-4"
+                      sizes="(max-width: 1024px) 100vw, 1024px"
+                    />
+                  </motion.div>
                 </AnimatePresence>
               </div>
 
@@ -234,10 +243,12 @@ export default function GalleryPage() {
                           : "border-zinc-800 opacity-50 hover:opacity-100"
                       }`}
                     >
-                      <img
+                      <Image
                         src={img}
                         alt="Thumbnail"
-                        className="w-full h-full object-contain p-1"
+                        fill
+                        className="object-contain p-1"
+                        sizes="64px"
                       />
                     </button>
                   ))}

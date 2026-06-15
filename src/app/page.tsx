@@ -1,9 +1,10 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useInView } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Globe, Users, Settings, Palette, ShieldCheck, ChevronLeft, ChevronRight } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import featuredNames from "@/data/featured.json";
 import galleryData from "@/data/gallery-data.json";
 
@@ -37,6 +38,25 @@ const capabilities = [
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoSectionRef = useRef<HTMLDivElement>(null);
+  const isVideoInView = useInView(videoSectionRef, { amount: 0.1, once: false });
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
+  useEffect(() => {
+    if (isVideoInView && videoRef.current && !videoLoaded) {
+      videoRef.current.load();
+      setVideoLoaded(true);
+    }
+    
+    if (videoRef.current) {
+      if (isVideoInView) {
+        videoRef.current.play().catch(() => {});
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  }, [isVideoInView, videoLoaded]);
 
   // Dynamic Featured Products Logic
   const featuredProducts = (featuredNames as string[]).map(name => {
@@ -73,18 +93,21 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image - Luxury Ink Fluid Visual */}
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105"
-          style={{ 
-            backgroundImage: "url('/images/hero-bg.png')",
-          }}
-        >
+        <div className="absolute inset-0 z-0 scale-105">
+          <Image
+            src="/images/hero-bg.webp"
+            alt="Hero Background"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
           {/* Animated Overlay for depth - tuned for fluid beauty */}
           <motion.div 
             initial={{ opacity: 0.6 }}
             animate={{ opacity: 0.8 }}
             transition={{ duration: 4, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
-            className="absolute inset-0 bg-brand-black/60" 
+            className="absolute inset-0 bg-brand-black/60 z-10" 
           />
         </div>
 
@@ -143,17 +166,19 @@ export default function Home() {
       </section>
 
       {/* Factory Promo Video Section */}
-      <section className="relative h-screen bg-brand-black overflow-hidden">
+      <section ref={videoSectionRef} className="relative h-screen bg-brand-black overflow-hidden">
         <video 
-          autoPlay 
+          ref={videoRef}
           muted 
           loop 
           playsInline
           poster="/images/video-poster.jpg"
-          preload="auto"
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover opacity-100"
         >
-          <source src="/videos/factory-promo.mp4" type="video/mp4" />
+          {isVideoInView && (
+            <source src="/videos/factory-promo.mp4" type="video/mp4" />
+          )}
           您的瀏覽器不支援影片播放。
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-brand-black/40" />
@@ -271,10 +296,12 @@ export default function Home() {
                 className="min-w-[300px] md:min-w-[350px] lg:min-w-[400px] snap-start group"
               >
                 <div className="relative aspect-[4/5] overflow-hidden mb-6 bg-white rounded-sm flex items-center justify-center p-12 border border-transparent group-hover:border-brand-gold transition-all duration-500 shadow-xl">
-                  <img 
+                  <Image 
                     src={item.coverSrc} 
                     alt={item.groupName}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-all duration-700"
+                    fill
+                    className="object-contain group-hover:scale-105 transition-all duration-700 p-8"
+                    sizes="(max-width: 768px) 300px, (max-width: 1024px) 350px, 400px"
                   />
                 </div>
                 <div className="text-center px-4">
