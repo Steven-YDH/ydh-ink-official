@@ -9,7 +9,7 @@ const newsItems = [
     id: 1,
     date: "2024.06.15",
     category: "品牌公告",
-    title: "廣東易鼎鴻（富日集團）智慧工廠 2.0 正式落成",
+    title: "廣東易鼎鴻國際供應鏈管理有限公司（富日集團）智慧工廠 2.0 正式落成",
     excerpt: "歷時兩年打造的全新智慧化生產線今日正式啟用，實現毫克級精準配料與全自動包裝流程。",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
   },

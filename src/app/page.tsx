@@ -10,28 +10,28 @@ import galleryData from "@/data/gallery-data.json";
 const capabilities = [
   {
     icon: Globe,
-    title: "全球貿易賦能",
-    desc: "深耕全球貿易鏈路，憑藉 32 年大廠積澱，提供完善的國際供應鏈賦能。"
+    title: "全球商務佈局與商務賦能",
+    desc: "深耕全球貿易鏈路，憑藉 32 年大廠積澱，提供完善的國際供應鏈與跨國商務賦能。"
   },
   {
     icon: Users,
-    title: "戰略通路加盟",
-    desc: "熱烈招募全國各省策略夥伴，以極具競爭力的代理政策與技術支持，共創雙贏。"
+    title: "省級戰略聯盟與通路招募",
+    desc: "招募全國各省策略夥伴，以極具競爭力的代理政策與技術支持，共建大廠級供應生態。"
   },
   {
     icon: Settings,
-    title: "頂尖研發定製",
-    desc: "資深 R&D 實驗室支持，為您量身打造專屬油墨配方與品牌包裝。"
+    title: "高端職人級 R&D 研發實驗室",
+    desc: "資深專家團隊坐鎮，為您量身打造專屬工業級油墨配方與高端品牌視覺包裝。"
   },
   {
     icon: Palette,
-    title: "色彩美學定製",
-    desc: "引進國際領先電腦配色系統，毫克級精準調校，完美還原品牌核心色彩。"
+    title: "毫克級精準色彩美學定製",
+    desc: "引進國際領先電腦配色系統，毫克級精準調校，完美還原品牌核心色彩與極簡奢華質感。"
   },
   {
     icon: ShieldCheck,
-    title: "智造品質標竿",
-    desc: "智慧化封閉生產線，零誤差出廠檢驗標準，守護每一份印刷品質。"
+    title: "智慧化生產與零誤差檢驗標竿",
+    desc: "智慧化封閉生產線配合零誤差出廠檢驗，以嚴苛的品質守護每一份職人匠心。"
   }
 ];
 
@@ -143,13 +143,15 @@ export default function Home() {
       </section>
 
       {/* Factory Promo Video Section */}
-      <section className="relative h-screen bg-black overflow-hidden">
+      <section className="relative h-screen bg-brand-black overflow-hidden">
         <video 
           autoPlay 
           muted 
           loop 
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-80"
+          poster="/images/video-poster.jpg"
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover opacity-100"
         >
           <source src="/videos/factory-promo.mp4" type="video/mp4" />
           您的瀏覽器不支援影片播放。
@@ -164,12 +166,12 @@ export default function Home() {
         <div className="absolute inset-0 pointer-events-none" 
              style={{ 
                backgroundImage: `
-                 linear-gradient(to right, rgba(212, 175, 55, 0.08) 1px, transparent 1px),
-                 linear-gradient(to bottom, rgba(212, 175, 55, 0.08) 1px, transparent 1px)
+                 linear-gradient(to right, rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+                 linear-gradient(to bottom, rgba(212, 175, 55, 0.05) 1px, transparent 1px)
                `,
-               backgroundSize: '24px 24px',
-               maskImage: 'radial-gradient(circle at center, black 40%, transparent 90%)',
-               WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 90%)'
+               backgroundSize: '16px 16px',
+               maskImage: 'radial-gradient(circle at center, black 40%, transparent 95%)',
+               WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 95%)'
              }} 
         />
         <div className="container mx-auto px-6 relative z-10">
@@ -209,11 +211,13 @@ export default function Home() {
                   <cap.icon size={40} strokeWidth={1} />
                 </div>
                 
-                <h3 className="font-serif text-xl mb-4 text-white group-hover:text-brand-gold transition-colors duration-300">
-                  {cap.title}
-                </h3>
+                <div className="h-16 flex items-center mb-4">
+                  <h3 className="font-serif text-xl text-white group-hover:text-brand-gold transition-colors duration-300">
+                    {cap.title}
+                  </h3>
+                </div>
                 
-                <p className="text-zinc-400 text-sm font-light leading-relaxed mt-8">
+                <p className="text-zinc-400 text-sm font-light leading-relaxed">
                   {cap.desc}
                 </p>
               </motion.div>
