@@ -40,7 +40,7 @@ export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
-  const isVideoInView = useInView(videoSectionRef, { amount: 0.1, once: false });
+  const isVideoInView = useInView(videoSectionRef, { amount: 0.1, once: false, margin: "400px" });
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
@@ -166,14 +166,14 @@ export default function Home() {
       </section>
 
       {/* Factory Promo Video Section */}
-      <section ref={videoSectionRef} className="relative h-screen bg-brand-black overflow-hidden">
+      <section ref={videoSectionRef} className="relative h-screen bg-brand-black overflow-hidden" style={{ backgroundImage: 'url(/images/video-poster.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <video 
           ref={videoRef}
           muted 
           loop 
           playsInline
           poster="/images/video-poster.jpg"
-          preload="metadata"
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover opacity-100"
         >
           {isVideoInView && (
