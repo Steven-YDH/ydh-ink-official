@@ -11,6 +11,7 @@ const navItems = [
   { name: "首頁", href: "/" },
   { name: "關於我們", href: "/about" },
   { name: "產品", href: "/gallery" },
+  { name: "最新動態", href: "/news" },
   { name: "聯絡我們", href: "/contact" },
 ];
 

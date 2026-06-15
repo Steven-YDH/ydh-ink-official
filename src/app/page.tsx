@@ -155,18 +155,7 @@ export default function Home() {
           您的瀏覽器不支援影片播放。
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-brand-black/40" />
-        <div className="relative z-10 h-full flex flex-col items-center justify-start pt-32 md:pt-48 text-center px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="text-brand-gold tracking-[0.4em] text-xs uppercase mb-4 block">Factory Production</span>
-            <h2 className="font-serif text-3xl md:text-5xl text-white mb-6">現代化智慧製造車間</h2>
-            <div className="w-16 h-px bg-brand-gold mx-auto" />
-          </motion.div>
-        </div>
+        {/* Video Background Section Overlay - Removed text to keep video clear */}
       </section>
 
       {/* Core Capabilities Section */}
@@ -295,33 +284,47 @@ export default function Home() {
       </section>
 
       {/* Contact CTA Section */}
-      <section className="py-40 md:py-60 relative overflow-hidden">
+      <section className="py-40 md:py-60 relative overflow-hidden bg-brand-black">
+        {/* Precision Grid Background with Radial Mask */}
+        <div className="absolute inset-0 pointer-events-none opacity-40" 
+             style={{ 
+               backgroundImage: `
+                 linear-gradient(to right, rgba(212, 175, 55, 0.1) 1px, transparent 1px),
+                 linear-gradient(to bottom, rgba(212, 175, 55, 0.1) 1px, transparent 1px)
+               `,
+               backgroundSize: '40px 40px',
+               maskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)',
+               WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)'
+             }} 
+        />
+        
+        {/* Large Decorative Light Source */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none z-0">
+          <div className="w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-gold/10 via-transparent to-transparent opacity-60" />
+        </div>
+
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            <h2 className="font-serif text-4xl md:text-6xl mb-12 leading-[1.3]">
+            <h2 className="font-serif text-4xl md:text-6xl mb-12 leading-[1.3] text-white">
               我們與極致的距離，<br className="md:hidden" />
-              <span className="text-brand-gold italic">只在您的螢幕與滑鼠之間</span>
+              <span className="text-brand-gold italic text-shadow-gold">只在您的螢幕與滑鼠之間</span>
             </h2>
             <p className="max-w-xl mx-auto text-zinc-400 font-light text-lg mb-16 tracking-wide">
               不論是商務合作、各省代理渠道拓展，或是高端油墨定製開發，我們隨時準備好與您交流。
             </p>
             <Link 
               href="/contact"
-              className="px-12 py-5 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all duration-500 tracking-[0.3em] text-xs uppercase font-medium"
+              className="group relative inline-flex items-center justify-center px-12 py-5 border border-brand-gold text-brand-gold hover:text-brand-black transition-all duration-500 tracking-[0.3em] text-xs uppercase font-medium overflow-hidden"
             >
-              聯繫我們
+              <span className="relative z-10">聯繫我們</span>
+              <div className="absolute inset-0 bg-brand-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
             </Link>
           </motion.div>
-        </div>
-        
-        {/* Decorative Background Element */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] pointer-events-none opacity-20">
-          <div className="w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-gold/20 via-transparent to-transparent" />
         </div>
       </section>
     </div>

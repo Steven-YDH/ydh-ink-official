@@ -31,6 +31,7 @@ export default function Footer() {
             <div className="flex flex-col space-y-4">
               <Link href="/about" className="text-white/60 hover:text-brand-gold text-sm transition-colors">關於我們</Link>
               <Link href="/gallery" className="text-white/60 hover:text-brand-gold text-sm transition-colors">產品</Link>
+              <Link href="/news" className="text-white/60 hover:text-brand-gold text-sm transition-colors">最新動態</Link>
               <Link href="/contact" className="text-white/60 hover:text-brand-gold text-sm transition-colors">聯絡我們</Link>
             </div>
           </div>
