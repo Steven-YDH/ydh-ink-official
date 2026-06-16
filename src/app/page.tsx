@@ -212,8 +212,8 @@ export default function Home() {
               </video>
 
               {/* Video UI Overlay */}
-              <div className={`absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity duration-500 ${isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                <div className="relative">
+              <div className={`absolute inset-0 bg-black/30 transition-opacity duration-500 ${isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12">
                   {/* Decorative Rings */}
                   <div className="absolute -inset-8 border border-brand-gold/20 rounded-full animate-pulse" />
                   <div className="absolute -inset-12 border border-brand-gold/10 rounded-full animate-pulse delay-700" />
