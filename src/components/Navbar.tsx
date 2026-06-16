@@ -51,7 +51,7 @@ export default function Navbar() {
           href="/" 
           className="hover:opacity-80 transition-opacity flex items-center"
         >
-          <img src="/images/logo.png" alt="YDH Logo" className="h-8 md:h-11 w-auto" />
+          <img src="/images/logo.png" alt="YDH Logo" className="h-5 md:h-7 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
