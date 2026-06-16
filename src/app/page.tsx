@@ -42,19 +42,24 @@ export default function Home() {
   const videoSectionRef = useRef<HTMLDivElement>(null);
   const isVideoInView = useInView(videoSectionRef, { amount: 0.1, once: false, margin: "400px" });
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.muted = false;
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   useEffect(() => {
     if (isVideoInView && videoRef.current && !videoLoaded) {
       videoRef.current.load();
       setVideoLoaded(true);
-    }
-    
-    if (videoRef.current) {
-      if (isVideoInView) {
-        videoRef.current.play().catch(() => {});
-      } else {
-        videoRef.current.pause();
-      }
     }
   }, [isVideoInView, videoLoaded]);
 
@@ -165,24 +170,68 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Factory Promo Video Section */}
-      <section ref={videoSectionRef} className="relative h-screen bg-brand-black overflow-hidden" style={{ backgroundImage: 'url(/images/video-poster.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <video 
-          ref={videoRef}
-          muted 
-          loop 
-          playsInline
-          poster="/images/video-poster.jpg"
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-100"
-        >
-          {isVideoInView && (
-            <source src="/videos/factory-promo.mp4" type="video/mp4" />
-          )}
-          您的瀏覽器不支援影片播放。
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-brand-black/40" />
-        {/* Video Background Section Overlay - Removed text to keep video clear */}
+      {/* Factory Promo Video Section - Refactored for High Quality Click-to-Play */}
+      <section ref={videoSectionRef} className="py-24 md:py-32 bg-brand-black overflow-hidden relative">
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-gold/20 to-transparent" />
+        
+        <div className="container mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="max-w-5xl mx-auto"
+          >
+            <div className="text-center mb-12">
+              <span className="text-brand-gold tracking-[0.3em] text-[10px] md:text-xs uppercase font-medium">Production Excellence</span>
+              <h2 className="font-serif text-3xl md:text-5xl mt-3 mb-6 leading-tight text-white">
+                走進易鼎鴻智慧工廠
+              </h2>
+              <p className="text-zinc-400 font-light max-w-2xl mx-auto text-sm md:text-base">
+                點擊下方影片，觀看 32 年匠心與智慧化生產的完美結合。原始 4K 品質，為您呈現最真實的工業美學。
+              </p>
+            </div>
+
+            <div 
+              className="group relative aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-[0_32px_64px_-12px_rgba(0,0,0,0.8)] border border-white/5 cursor-pointer bg-zinc-900"
+              onClick={togglePlay}
+            >
+              <video 
+                ref={videoRef}
+                loop 
+                playsInline
+                poster="/images/factory-promo-high-poster.jpg"
+                preload="auto"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              >
+                {isVideoInView && (
+                  <source src="/videos/factory-promo-high.mp4" type="video/mp4" />
+                )}
+                您的瀏覽器不支援影片播放。
+              </video>
+
+              {/* Video UI Overlay */}
+              <div className={`absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity duration-500 ${isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                <div className="relative">
+                  {/* Decorative Rings */}
+                  <div className="absolute -inset-8 border border-brand-gold/20 rounded-full animate-pulse" />
+                  <div className="absolute -inset-12 border border-brand-gold/10 rounded-full animate-pulse delay-700" />
+                  
+                  {/* Play Button */}
+                  <div className="relative w-20 h-20 md:w-28 md:h-28 bg-brand-gold text-brand-black rounded-full flex items-center justify-center shadow-2xl transition-transform duration-500 group-hover:scale-110">
+                    <div className="ml-2 w-0 h-0 border-y-[12px] md:border-y-[18px] border-y-transparent border-l-[20px] md:border-l-[28px] border-l-brand-black" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Playing State Overlay (Hidden on play, shows on hover or pause) */}
+              {!isPlaying && (
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              )}
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Core Capabilities Section */}
