@@ -46,8 +46,8 @@ export default function AboutPage() {
     },
     {
       year: "2024",
-      title: "智慧製造・品牌升級",
-      description: "正式推進 Industry 4.0 智能管理系統，全自動化流程減少 70% 人工，實現環保與效能的雙重飛躍。",
+      title: "環保升級・智造未來",
+      description: "全面啟動「綠色守護計劃」，深耕大豆油墨與零礦物油研發，並導入 Industry 4.0 系統實現毫克級精準製造。",
     },
   ];
 
@@ -75,11 +75,11 @@ export default function AboutPage() {
               品牌願景
             </span>
             <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl mb-12 tracking-tight leading-tight">
-              在精準與美學的 <br />
-              <span className="text-brand-gold italic">交會點</span>
+              綠色印刷，守護純淨 <br />
+              <span className="text-brand-gold italic">定義智慧製造新高度</span>
             </h1>
             <p className="text-zinc-400 text-lg md:text-xl font-light max-w-2xl leading-relaxed tracking-wide">
-              小琥哥品牌起源於對工業極致的追求，並在「極簡奢華」的哲學下，將職人精神從油墨實驗室延伸至生活美學。
+              我們致力於大豆油墨研發與零礦物油承諾，透過毫克級精準的智慧生產，將環境永續落實於每一滴色彩。
             </p>
           </motion.div>
         </div>
@@ -166,7 +166,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Personal Branding Section: Asymmetric Grid */}
+      {/* Manufacturing Excellence Section: Asymmetric Grid */}
       <section className="py-40 md:py-60 bg-zinc-950/50">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-24 items-center">
@@ -178,17 +178,17 @@ export default function AboutPage() {
                 transition={{ duration: 1 }}
               >
                 <span className="text-brand-gold tracking-[0.4em] text-xs uppercase font-medium mb-6 block">
-                  創辦人精神
+                  智造基地
                 </span>
                 <h2 className="font-serif text-4xl md:text-6xl mb-10 leading-tight">
-                  小琥哥：<br />
-                  <span className="text-brand-gold italic">環保</span> 與 <span className="text-brand-gold italic">精準</span> 的領航者
+                  Manufacturing <br />
+                  <span className="text-brand-gold italic">Excellence</span>
                 </h2>
                 <div className="space-y-6 text-zinc-400 font-light text-lg leading-relaxed tracking-wide">
                   <p>
-                    作為廣東易鼎鴻國際供應鏈管理有限公司（富日集團）的經營者，我將健身房中的紀律完美平移至工業製造。每一滴油墨的調配，都如同肌肉訓練般，需要毫克級的精準與日復一日的堅持。
+                    我們在廣東建立的高標準生產基地，結合了領先業界的環保實驗室與 Industry 4.0 智慧化車間。每一道工序都經過嚴格監控，確保在追求產能的同時，達成環境影響最小化。
                     <br /><br />
-                    廣東易鼎鴻國際供應鏈管理有限公司（富日集團）不僅是一個品牌，更是我對工藝執著與環境承諾的結合。我們不隨波逐流，只為那份最專業的綠色質感。
+                    透過現代化的集團園區管理，我們不僅製造油墨，更在定義未來印刷產業的永續標準。
                   </p>
                 </div>
               </motion.div>
@@ -196,46 +196,62 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-12 gap-4 h-[600px] md:h-[800px]">
               {/* Asymmetric Grid with Images */}
+              {/* 位置 1：領先業界的環保實驗室 (R&D Laboratory) - 此處請替換為真實照片 */}
               <motion.div 
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.2 }}
-                className="col-span-8 h-full relative overflow-hidden"
+                className="col-span-8 h-full relative group overflow-hidden"
               >
                 <div 
-                  className="absolute inset-0 bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-1000 scale-105 hover:scale-100"
-                  style={{ backgroundImage: "url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop')" }}
+                  className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+                  style={{ backgroundImage: "url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop')" }}
                 />
-                <div className="absolute inset-0 bg-brand-black/20" />
+                <div className="absolute inset-0 bg-brand-black/40 group-hover:bg-brand-black/20 transition-colors duration-500" />
+                <div className="absolute bottom-8 left-8">
+                  <span className="text-brand-gold text-xs tracking-widest uppercase mb-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-500">R&D Laboratory</span>
+                  <h4 className="text-white text-xl font-medium tracking-wide">環保研發實驗室</h4>
+                </div>
               </motion.div>
 
               <div className="col-span-4 flex flex-col gap-4">
+                {/* 位置 2：Industry 4.0 智慧化車間 (Smart Workshop) - 此處請替換為真實照片 */}
                 <motion.div 
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1, delay: 0.4 }}
-                  className="h-2/5 relative overflow-hidden"
+                  className="h-2/5 relative group overflow-hidden"
                 >
                   <div 
-                    className="absolute inset-0 bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-1000 scale-105 hover:scale-100"
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1548092372-0d1bd40894a3?q=80&w=2070&auto=format&fit=crop')" }}
+                    className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1565462015069-3159937cdf5a?q=80&w=2070&auto=format&fit=crop')" }}
                   />
-                  <div className="absolute inset-0 bg-brand-black/20" />
+                  <div className="absolute inset-0 bg-brand-black/40 group-hover:bg-brand-black/20 transition-colors duration-500" />
+                  <div className="absolute bottom-6 left-6">
+                    <span className="text-brand-gold text-[10px] tracking-widest uppercase mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Smart Workshop</span>
+                    <h4 className="text-white text-base font-medium tracking-wide">智慧化車間</h4>
+                  </div>
                 </motion.div>
+
+                {/* 位置 3：現代化集團生產園區 (Manufacturing Complex) - 此處請替換為真實照片 */}
                 <motion.div 
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1, delay: 0.6 }}
-                  className="h-3/5 relative overflow-hidden"
+                  className="h-3/5 relative group overflow-hidden"
                 >
                   <div 
-                    className="absolute inset-0 bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-1000 scale-105 hover:scale-100"
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1974&auto=format&fit=crop')" }}
+                    className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')" }}
                   />
-                  <div className="absolute inset-0 bg-brand-black/20" />
+                  <div className="absolute inset-0 bg-brand-black/40 group-hover:bg-brand-black/20 transition-colors duration-500" />
+                  <div className="absolute bottom-6 left-6">
+                    <span className="text-brand-gold text-[10px] tracking-widest uppercase mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Manufacturing Complex</span>
+                    <h4 className="text-white text-base font-medium tracking-wide">現代化生產園區</h4>
+                  </div>
                 </motion.div>
               </div>
             </div>
