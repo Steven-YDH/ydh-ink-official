@@ -62,7 +62,7 @@ export default function GalleryPage() {
               跨越材質之境，以光影定義精準。
             </span>
             <h1 className="font-serif text-4xl md:text-7xl mb-8 md:mb-12 tracking-tight">
-              油墨產品 <span className="text-brand-gold italic">實物作品集</span>
+              專門為印刷人設計的產品
             </h1>
             <p className="text-zinc-400 font-light max-w-xl leading-relaxed tracking-wide text-sm md:text-base">
               專為高精度膠印、綠色大豆環保與先進固化技術所研發，具備瞬時固化與卓越色彩還原，提供最完整的高端印刷包裝與實物展示。
